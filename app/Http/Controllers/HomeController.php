@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use DataTables;
 use App\Customers;
+use App\Products;
 
 class HomeController extends Controller
 {
@@ -28,22 +28,27 @@ class HomeController extends Controller
         return view('home');
     }
     
+    /*
+     * Get customers list
+     */
     public function customers(Request $request)
     {
-//        if ($request->ajax()) {
-//         $data = Customers::latest()->get();
-//            return Datatables::of($data)
-//                    ->addIndexColumn()
-//                    ->addColumn('action', function($row){
-//   
-//                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-//     
-//                            return $btn;
-//                    })
-//                    ->rawColumns(['action'])
-//                    ->make(true);
-//        }
+        if ($request->ajax()) {
+           return Customers::getCustomers();
+        }
         return view('customer');
     }
+    
+    /*
+     * Get product list
+     */
+    public function products(Request $request)
+    {
+        if ($request->ajax()) {
+           return Products::getProducts();
+        }
+        return view('products');
+    }
+    
     
 }

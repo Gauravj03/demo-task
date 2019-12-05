@@ -2,13 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h3>Customers List</h3>
+    <h3>Produts List</h3>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock Status</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -22,11 +23,12 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('customers') }}",
+        ajax: "{{ route('products') }}",
         columns: [
             {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
+            {data: 'product_name', name: 'product_name'},
+            {data: 'price', name: 'price'},
+            {data: 'stock', name: 'stock'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
