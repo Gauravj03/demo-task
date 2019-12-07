@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 08:25 AM
+-- Generation Time: Dec 07, 2019 at 08:47 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -51,7 +51,8 @@ INSERT INTO `abilities` (`id`, `name`, `title`, `entity_id`, `entity_type`, `onl
 (5, 'customers', 'Customers customers', NULL, 'App\\Customers', 0, NULL, NULL, '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
 (6, 'products', 'Products products', NULL, 'App\\Products', 0, NULL, NULL, '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
 (7, 'orders', 'Orders orders', NULL, 'App\\Orders', 0, NULL, NULL, '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
-(8, 'order_items', 'Order items order items', NULL, 'App\\OrderItems', 0, NULL, NULL, '2019-12-02 12:59:45', '2019-12-02 12:59:45');
+(8, 'order_items', 'Order items order items', NULL, 'App\\OrderItems', 0, NULL, NULL, '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
+(9, 'view', 'View customers', NULL, 'App\\Customers', 0, NULL, NULL, '2019-12-07 12:14:53', '2019-12-07 12:14:53');
 
 -- --------------------------------------------------------
 
@@ -332,14 +333,69 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `customer_id` int(10) UNSIGNED NOT NULL,
   `invoice_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total_amount` decimal(8,2) NOT NULL,
+  `total_amount` decimal(8,2) DEFAULT NULL,
   `status` enum('new','processed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `customer_id` int(10) UNSIGNED NOT NULL
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `invoice_number`, `total_amount`, `status`, `created_at`, `updated_at`) VALUES
+(2, 153, '6625', '54672.03', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(3, 177, '5667', '60917.15', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(4, 70, '1969', '13214.85', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(5, 72, '8583', '15630.52', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(6, 65, '7238', '17517.99', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(7, 64, '9587', '9592.80', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(8, 17, '3103', '69826.05', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(9, 163, '4582', '37504.88', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(10, 144, '4859', '13514.01', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:17'),
+(11, 57, '8422', '80062.65', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(12, 5, '7194', '84023.01', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(13, 4, '6847', '41834.88', 'new', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(14, 58, '5617', '42969.15', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(15, 155, '6176', '6674.43', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(16, 159, '2194', '3547.00', 'processed', '2019-12-07 09:03:12', '2019-12-07 09:03:18'),
+(17, 146, '9096', '6143.18', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(18, 8, '1373', '36033.27', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(19, 44, '4205', '1156.44', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(20, 64, '1518', '8135.58', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(21, 168, '4125', '23982.00', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(22, 35, '6337', '60917.15', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(23, 21, '6863', '5001.35', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(24, 30, '8941', '42443.46', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(25, 142, '9606', '2463.06', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:18'),
+(26, 118, '3888', '34684.32', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(27, 167, '1959', '4901.20', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(28, 62, '7115', '8702.45', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(29, 195, '8120', '78533.64', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(30, 121, '8219', '32494.16', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(31, 152, '4587', '14507.92', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(32, 94, '8886', '11565.65', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(33, 149, '8583', '48909.78', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(34, 156, '6125', '59504.48', 'processed', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(35, 31, '7930', '52214.70', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(36, 44, '6677', '35382.95', 'new', '2019-12-07 09:03:13', '2019-12-07 09:03:19'),
+(37, 27, '6772', '13782.87', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:19'),
+(38, 83, '2977', '19153.38', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:19'),
+(39, 53, '2702', '6865.44', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:19'),
+(40, 71, '4296', '37436.56', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:19'),
+(41, 30, '9529', '48354.75', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(42, 85, '7969', '12768.92', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(43, 192, '2369', '9252.52', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(44, 103, '7807', '77281.65', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(45, 198, '3957', '8725.96', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(46, 97, '6124', '279.04', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(47, 148, '4843', '10230.12', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(48, 78, '1860', '69563.97', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(49, 82, '9541', '17451.92', 'new', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(50, 77, '2954', '9376.22', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20'),
+(51, 20, '3302', '9975.15', 'processed', '2019-12-07 09:03:14', '2019-12-07 09:03:20');
 
 -- --------------------------------------------------------
 
@@ -355,6 +411,62 @@ CREATE TABLE `order_items` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 2, 37, 9, '2019-12-07 09:03:14', '2019-12-07 09:03:14'),
+(2, 3, 48, 7, '2019-12-07 09:03:14', '2019-12-07 09:03:14'),
+(3, 4, 23, 3, '2019-12-07 09:03:14', '2019-12-07 09:03:14'),
+(4, 5, 98, 2, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(5, 6, 99, 7, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(6, 7, 13, 2, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(7, 8, 36, 7, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(8, 9, 18, 4, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(9, 10, 71, 3, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(10, 11, 39, 9, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(11, 12, 31, 9, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(12, 13, 70, 6, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(13, 14, 3, 5, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(14, 15, 69, 3, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(15, 16, 73, 5, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(16, 17, 5, 1, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(17, 18, 33, 7, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(18, 19, 72, 3, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(19, 20, 68, 2, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(20, 21, 13, 5, '2019-12-07 09:03:15', '2019-12-07 09:03:15'),
+(21, 22, 48, 7, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(22, 23, 45, 5, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(23, 24, 11, 9, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(24, 25, 22, 6, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(25, 26, 21, 8, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(26, 27, 32, 5, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(27, 28, 48, 1, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(28, 29, 10, 9, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(29, 30, 58, 4, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(30, 31, 96, 7, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(31, 32, 86, 5, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(32, 33, 50, 6, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(33, 34, 4, 8, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(34, 35, 48, 6, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(35, 36, 52, 5, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(36, 37, 30, 3, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(37, 38, 97, 3, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(38, 39, 55, 3, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(39, 40, 42, 8, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(40, 41, 38, 9, '2019-12-07 09:03:16', '2019-12-07 09:03:16'),
+(41, 42, 97, 2, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(42, 43, 86, 4, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(43, 44, 80, 9, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(44, 45, 10, 1, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(45, 46, 28, 8, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(46, 47, 17, 4, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(47, 48, 67, 7, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(48, 49, 10, 2, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(49, 50, 18, 1, '2019-12-07 09:03:17', '2019-12-07 09:03:17'),
+(50, 51, 36, 1, '2019-12-07 09:03:17', '2019-12-07 09:03:17');
 
 -- --------------------------------------------------------
 
@@ -395,7 +507,8 @@ INSERT INTO `permissions` (`id`, `ability_id`, `entity_id`, `entity_type`, `forb
 (5, 5, 2, 'roles', 0, NULL),
 (6, 6, 2, 'roles', 0, NULL),
 (7, 7, 2, 'roles', 0, NULL),
-(8, 8, 2, 'roles', 0, NULL);
+(8, 8, 2, 'roles', 0, NULL),
+(9, 9, 3, 'App\\User', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -566,9 +679,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@mailinator.com', '$2y$10$ZM9NOR98iaJEt1nM./loaOnlLzZiSIom3A66I/d3KtTXSxt8y21UG', 'JV6kPfTK2MrYzYvVYQ2fS8CRS7PPOGaW7qbEZJgfe0wmMf03HK9gHovqLcdC', '2019-12-02 12:55:18', '2019-12-02 12:55:18'),
-(3, 'User Manager', 'usermanager@mailinator.com', '$2y$10$ZB5QPiRiHXZU9dMACVeV.eMImZO3tEojlF1Ght/Fxbz.w7aXA0OQm', '65xapt4p4g', '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
-(4, 'Shop Manger', 'shopmanager@mailinator.com', '$2y$10$c3rdtwznQvGF9hf79QuqoOGFEqIsvhvAVEHXonUjANt4O6E/c/ONK', 'QN3FI2o7Iv', '2019-12-02 12:59:46', '2019-12-02 12:59:46');
+(1, 'admin', 'admin@mailinator.com', '$2y$10$ZM9NOR98iaJEt1nM./loaOnlLzZiSIom3A66I/d3KtTXSxt8y21UG', 'GjqadMLyCMINsbO3xIMwl6s8QFnWB965fm3c6ETSPtga2OGGq9Ps4jkeuK2h', '2019-12-02 12:55:18', '2019-12-02 12:55:18'),
+(3, 'User Manager', 'usermanager@mailinator.com', '$2y$10$72h7XyGp09SxBmma7rx6xu1YKkTa.6T1tG40JoSx1NojX6rhuJgQy', '3K2cbaSaXRYDoiiu2gzTVSmnQeCaaeVihRZLbn5anO2iJ1eVBeeKeiqBf0ay', '2019-12-02 12:59:45', '2019-12-02 12:59:45'),
+(4, 'Shop Manger', 'shopmanager@mailinator.com', '$2y$10$72h7XyGp09SxBmma7rx6xu1YKkTa.6T1tG40JoSx1NojX6rhuJgQy', 'RsPslJmeYQK2rpDCPmRRw9R3sT3MhgnVukPwCQeLrz9sjdebbTNGbkzvhCuo', '2019-12-02 12:59:46', '2019-12-02 12:59:46');
 
 --
 -- Indexes for dumped tables
@@ -613,7 +726,8 @@ ALTER TABLE `orders`
 -- Indexes for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -659,7 +773,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `abilities`
 --
 ALTER TABLE `abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `assigned_roles`
 --
@@ -679,17 +793,17 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -714,6 +828,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `assigned_roles`
   ADD CONSTRAINT `assigned_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
 
 --
 -- Constraints for table `permissions`

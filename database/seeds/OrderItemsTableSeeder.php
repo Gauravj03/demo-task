@@ -11,6 +11,13 @@ class OrderItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // https://laraveldaily.com/laravel-two-ways-seed-data-relationships/
+//        $studentsIDs= DB::table('students')->pluck('id');
+//        foreach (range(1,50) as $index) {
+//            DB::table('course_student')->insert([
+//               'course_id' => $faker->randomElement($coursesIDs),
+//               'student_id' => $faker->randomElement($studentsIDs)
+//            ]);
+//        }
     }
 }

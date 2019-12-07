@@ -15,9 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
             $table->string('invoice_number');
-            $table->decimal('total_amount', 8, 2);
+            $table->decimal('total_amount', 8, 2)->nullable();
             $table->enum('status', ['new', 'processed'])->default('new');
             $table->timestamps();
         });
